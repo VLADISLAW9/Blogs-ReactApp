@@ -4,7 +4,7 @@ import MySelect from "./UI/select/MySelect";
 
 const PostFilter = ({filter, setFilter}) => {
   return (
-    <div>
+    <div className="flex justify-center">
       <MyInput
         value={filter.query}
         onChange={(e) => setFilter({...filter, query: e.target.value})}

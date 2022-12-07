@@ -11,7 +11,7 @@ import PostList from '../components/PostList'
 import Loader from '../components/UI/loader/Loader'
 import Pagination from '../components/UI/pagination/Pagination'
 import { useObserver } from '../hooks/useObserver'
-
+import { AiOutlinePlus } from 'react-icons/ai'
 
 function Posts() {
 	const [posts, setPosts] = useState([])
@@ -57,30 +57,20 @@ function Posts() {
 	}
 
 	return (
-		<div className=''>
+		<div className='App'>
 			<MyModal visible={modal} setVisible={setModal}>
 				<PostForm create={createPost} />
 			</MyModal>
 
-			<MyButton  onClick={() => setModal(true)}>
-				Создать пользователя
-			</MyButton>
-
-			<hr/>
+			<button
+				className='fixed bottom-12  right-12 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
+				transition-all ease-in-out shadow-lg shadow-indigo-500/50 hover:from-purple-500 hover:to-purple-500'
+				onClick={() => setModal(true)}
+			>
+				<AiOutlinePlus className='w-10 h-10 text-white items-center' />
+			</button>
 
 			<PostFilter filter={filter} setFilter={setFilter} />
-
-			{/* <MySelect
-        value={limit}
-        onChange={(value) => setLimit(value)}
-        defaultValue="Кол-во элементов на странице"
-        options={[
-          { value: 5, name: "5" },
-          { value: 10, name: "10" },
-          { value: 25, name: "25" },
-          { value: -1, name: "Показать все посты" },
-        ]}
-      /> */}
 
 			{postError && <h1>Произошла ошибка ${postError}</h1>}
 
@@ -89,6 +79,7 @@ function Posts() {
 				posts={sortedAndSearchedPosts}
 				title='Cписок постов'
 			/>
+
 			<div ref={lastElement} style={{ height: 20 }} />
 			{isPostsLoading && (
 				<div>

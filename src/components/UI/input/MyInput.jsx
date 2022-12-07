@@ -1,10 +1,13 @@
 import React from 'react';
-import classes from './MyInput.module.css'
 
 const MyInput = React.forwardRef((props, ref) => {
     return (
-        <input ref={ref} className={classes.myInput} {...props}/>
-    );
+			<input
+				ref={ref}
+				className='bg-zinc-800 border-2 border-zinc-600 px-5 py-3 w-96 text-white rounded-l-xl'
+				{...props}
+			/>
+		)
 });
 
 export default MyInput

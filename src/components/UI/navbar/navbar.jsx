@@ -13,7 +13,7 @@ const Navbar = () => {
 	}
 
 	return (
-		<div className='flex items-center rounded-b-xl bg-zinc-800  w-full px-10 py-5'>
+		<div className='flex  items-center rounded-b-xl bg-zinc-700  w-full px-10 py-5'>
 			<div className='flex-1'>
 				<a href='#'>
 					<ImBlogger2 className='w-10 h-10 text-purple-600' />
