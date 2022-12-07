@@ -3,7 +3,7 @@ import classes from './MyButton.module.css'
 
 const MyButton = ({children, ...props}) => {
     return (
-        <button {...props} className={classes.myBtn}>
+        <button {...props} className = "bg-purple-600 rounded-xl hover:bg-purple-800 transition-colors ease-in-out text-white px-5 py-2">
             {children}
         </button>
     )
