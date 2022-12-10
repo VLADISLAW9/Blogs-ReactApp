@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color:rgb(39 39 42);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,8 +17,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color:rgb(39 39 42);
-  height: 100%;
 }
 
 .App {

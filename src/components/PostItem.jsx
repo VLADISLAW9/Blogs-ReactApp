@@ -1,24 +1,37 @@
-import React from "react";
-import MyButton from "./UI/button/MyButton";
-import {useHistory } from 'react-router-dom'
+import React from 'react'
+import MyButton from './UI/button/MyButton'
+import { useHistory } from 'react-router-dom'
 
-const PostItem = (props) => {
-  const router = useHistory()
+const PostItem = props => {
 
-  return (
-    <div className="post">
-      <div className="post__content">
-        <strong>
-          {props.post.id}. {props.post.title}
-        </strong>
-        <div>{props.post.body}</div>
-      </div>
-      <div className="post__btns">
-        <MyButton onClick={() => router.push(`/posts/${props.post.id}`)}>Открыть</MyButton>
-        <MyButton onClick={() => props.remove(props.post)}>Удалить</MyButton>
-      </div>
-    </div>
-  );
-};
+	const router = useHistory()
+	return (
+		<div className=' px-7 py-7 border-2 border-zinc-500 rounded-xl mt-10'>
+			<div className='mt-10'>
+				<div className='text-center'>
+					<h1 className='text-white text-3xl'>{props.post.title}</h1>
+				</div>
+				<div className='mt-10'>
+					<p className='text-white opacity-70'>{props.post.body}</p>
+				</div>
+			</div>
 
-export default PostItem;
+			<hr className='mt-10' />
+
+			<div className='mt-6 flex justify-center'>
+				<div className=''>
+					<MyButton onClick={() => router.push(`/posts/${props.post.id}`)}>
+						{' '}
+						Открыть{' '}
+					</MyButton>
+				</div>
+
+				<div className='ml-5'>
+					<MyButton onClick={() => props.remove(props.post)}>Удалить</MyButton>
+				</div>
+			</div>
+		</div>
+	)
+}
+
+export default PostItem

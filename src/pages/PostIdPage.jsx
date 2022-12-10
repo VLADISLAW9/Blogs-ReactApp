@@ -24,10 +24,9 @@ const PostIdPage = () => {
 
     return (
         <div>
-            <h1>ВЫ ДОЦЕНТ, так как открыли пост под номером: {params.id} </h1>
             {isLoading
                 ? <Loader/>
-                : <div>{post.id} {post.title}</div>
+                : <div>{post.title}</div>
             }
             <h1>
                 Комментарии:

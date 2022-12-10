@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PostFilter from '../components/PostFilter'
 import PostService from '../API/PostService'
 import { usePosts } from '../hooks/usePosts'
 import { useFethcing } from '../hooks/useFetching'
 import { getPageCount } from '../util/pages'
-import MyButton from '../components/UI/button/MyButton'
 import PostForm from '../components/PostForm'
 import MyModal from '../components/UI/modalwindows/MyModal'
 import PostList from '../components/PostList'
@@ -12,6 +11,7 @@ import Loader from '../components/UI/loader/Loader'
 import Pagination from '../components/UI/pagination/Pagination'
 import { useObserver } from '../hooks/useObserver'
 import { AiOutlinePlus } from 'react-icons/ai'
+import axios from 'axios'
 
 function Posts() {
 	const [posts, setPosts] = useState([])
@@ -74,20 +74,16 @@ function Posts() {
 
 			{postError && <h1>Произошла ошибка ${postError}</h1>}
 
-			<PostList
-				remove={removePost}
-				posts={sortedAndSearchedPosts}
-				title='Cписок постов'
-			/>
+			<PostList remove={removePost} posts={sortedAndSearchedPosts} />
 
 			<div ref={lastElement} style={{ height: 20 }} />
 			{isPostsLoading && (
-				<div>
-					<Loader />
+				<div className='mt-10 mb-10'>
+					<Loader/>
 				</div>
 			)}
 
-			<Pagination page={page} changePage={changePage} totalPages={totalPages} />
+			{/* <Pagination page={page} changePage={changePage} totalPages={totalPages} /> */}
 		</div>
 	)
 }
