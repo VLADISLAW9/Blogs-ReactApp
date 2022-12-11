@@ -8,10 +8,9 @@ import PostForm from '../components/PostForm'
 import MyModal from '../components/UI/modalwindows/MyModal'
 import PostList from '../components/PostList'
 import Loader from '../components/UI/loader/Loader'
-import Pagination from '../components/UI/pagination/Pagination'
 import { useObserver } from '../hooks/useObserver'
 import { AiOutlinePlus } from 'react-icons/ai'
-import axios from 'axios'
+
 
 function Posts() {
 	const [posts, setPosts] = useState([])
@@ -45,10 +44,6 @@ function Posts() {
 	const createPost = newPost => {
 		setPosts([...posts, newPost])
 		setModal(false)
-	}
-
-	const changePage = page => {
-		setPage(page)
 	}
 
 	// Получаем post из дочернего компонента

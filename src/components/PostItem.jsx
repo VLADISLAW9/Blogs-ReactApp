@@ -12,7 +12,7 @@ const PostItem = props => {
 					<h1 className='text-white text-3xl'>{props.post.title}</h1>
 				</div>
 				<div className='mt-10'>
-					<p className='text-white opacity-70'>{props.post.body}</p>
+					<p className='text-zinc-400'>{props.post.body}</p>
 				</div>
 			</div>
 
@@ -22,12 +22,12 @@ const PostItem = props => {
 				<div className=''>
 					<MyButton onClick={() => router.push(`/posts/${props.post.id}`)}>
 						{' '}
-						Открыть{' '}
+						Open{' '}
 					</MyButton>
 				</div>
 
 				<div className='ml-5'>
-					<MyButton onClick={() => props.remove(props.post)}>Удалить</MyButton>
+					<MyButton onClick={() => props.remove(props.post)}>Delete</MyButton>
 				</div>
 			</div>
 		</div>

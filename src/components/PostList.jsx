@@ -4,7 +4,7 @@ import PostItem from "./PostItem";
 
 const PostList = ({users ,posts, remove }) => {
   if (!posts.length) {
-    return <h1 className="text-center text-white text-xl">Постов не найдено</h1>;
+    return <h1 className="mt-10 text-center text-white text-2xl">Постов не найдено :(</h1>;
   }
 
   return (
