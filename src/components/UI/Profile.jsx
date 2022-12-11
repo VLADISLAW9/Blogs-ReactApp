@@ -24,7 +24,7 @@ const Profile = () => {
 		<div>
 			<div>
 				<button onClick={openMenu} className='flex items-center px-30 py-30'>
-					<div className='w-8 h-8 bg-slate-300 rounded-full'></div>
+					<div className='w-8 h-8 bg-hero-pattern bg-cover rounded-full'></div>
 					<MdKeyboardArrowDown className='w-6 h-6 text-slate-300' />
 				</button>
 			</div>
@@ -35,7 +35,7 @@ const Profile = () => {
 			>
 				<ul className='justify-center'>
 					<li className='mt-5'>
-						<Link	>
+						<Link to='/profile'>
 							<AiOutlineHome className='w-6 h-6 text-white' />
 						</Link>
 					</li>
