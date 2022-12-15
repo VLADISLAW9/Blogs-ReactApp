@@ -14,6 +14,7 @@ const PostFilter = ({filter, setFilter}) => {
 
 			<MySelect
 				value={filter.sort}
+				className = "text-zinc-400"
 				onChange={selectedSort => setFilter({ ...filter, sort: selectedSort })}
 				defaultValue='Sorted'
 				option={[

@@ -1,11 +1,11 @@
-import { Avatar } from '@mui/material'
+import { Avatar, CardMedia } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PostService from '../API/PostService'
 import Loader from '../components/UI/loader/Loader'
 import { useFethcing } from '../hooks/useFetching'
 
-const PostIdPage = () => {
+const PostIdPage = props => {
 	const params = useParams()
 	const [post, setPost] = useState({})
 	const [comments, setComments] = useState([])
@@ -27,12 +27,16 @@ const PostIdPage = () => {
 			{isLoading ? (
 				<Loader />
 			) : (
-				<div className='border-2 border-zinc-600 px-7 py-6 rounded-xl mt-16'>
-					<h1 className='text-white text-3xl border-b-2 pb-6 border-zinc-600'>
-						{post.title}
-					</h1>
-					<div className='mt-6'>
-						<p className='text-zinc-400 mt-6 '>{post.body}</p>
+				<div className='mt-16 '>
+					<div className='flex items-center border-b-2 pb-5 border-zinc-600'>
+						<Avatar sx={{ width: 56, height: 56 }} />
+						<p className='text-zinc-400 ml-3 text-2xl'>User {post.id}</p>
+					</div>
+					<p className='text-zinc-600 mt-3'>September 14, 2016</p>
+					<CardMedia className='mt-5 h-60 bg-gradient-to-r rounded-md from-indigo-500 via-purple-500 to-pink-500' />
+					<div className='mt-5 border-t-2 border-b-2 py-10 border-zinc-600'>
+						<h1 className='text-white text-3xl'>{post.title}</h1>
+						<p className='text-zinc-400 mt-10 '>{post.body}</p>
 					</div>
 					<div></div>
 				</div>

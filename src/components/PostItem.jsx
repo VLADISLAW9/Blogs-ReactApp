@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Avatar, CardMedia, IconButton } from '@mui/material'
-import axios from 'axios'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import Like from './UI/like/Like'
+import Comments from './UI/comments/comments'
 
 const PostItem = props => {
-	const [likes, setLikes] = useState(0)
-	const [likeActive, setLikeActive] = useState(false)
-
-	const liker = () => {
-		setLikes(likes + 1)
-		setLikeActive(true)
-	}
-
 	return (
 		<div className=' px-7 py-7 border-2 border-zinc-500 rounded-xl mt-10'>
 			<div className='flex items-center'>
-				<Avatar />
-				<p></p>
+				<Avatar/>
+				<p className='text-zinc-400 ml-3'>User {props.post.id}</p>
 			</div>
-			<CardMedia
-				className='mt-5 h-60'
-				component='img'
-				image='https://miro.medium.com/max/1200/1*A1nFvVPnIi1XlCnBZBr28Q.jpeg'
-			/>
+			<p className='text-zinc-600 mt-3'>September 14, 2016</p>
+			<CardMedia className='mt-5 h-60 bg-gradient-to-r rounded-md from-indigo-500 via-purple-500 to-pink-500' />
 			<div className='mt-10'>
 				<div className=''>
 					<h1 className='text-white text-2xl'>{props.post.title}</h1>
@@ -33,10 +22,12 @@ const PostItem = props => {
 			</div>
 
 			<div className='mt-3 flex items-center '>
-				<IconButton onClick={liker} color='secondary' aria-label='add an alarm'>
-					<FavoriteBorderIcon/> 
-					<p className='text-lg ml-2'>{likes}</p>
-				</IconButton>
+				<div>
+					<Like />
+				</div>
+				<div className='ml-7'>
+					<Comments post={props.post} />
+				</div>
 			</div>
 		</div>
 	)

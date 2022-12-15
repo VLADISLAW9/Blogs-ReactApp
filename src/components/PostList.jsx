@@ -10,7 +10,7 @@ const PostList = ({users ,posts, remove }) => {
   return (
     <div>
       <TransitionGroup>
-        {posts.map((post, index) => (
+        {posts.map((post, index, users) => (
           <CSSTransition
             key={post.id}
             nodeRef={nodeRef}

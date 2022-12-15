@@ -27,11 +27,4 @@ export default class PostService {
 		)
 		return response
 	}
-
-	static async getUsers(id) {
-		const response = await axios.get(
-			`https://jsonplaceholder.typicode.com/users/` + id
-		)
-		return response
-	}
 }

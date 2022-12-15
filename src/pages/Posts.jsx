@@ -10,6 +10,7 @@ import PostList from '../components/PostList'
 import Loader from '../components/UI/loader/Loader'
 import { useObserver } from '../hooks/useObserver'
 import { AiOutlinePlus } from 'react-icons/ai'
+import axios from 'axios'
 
 
 function Posts() {
@@ -21,6 +22,20 @@ function Posts() {
 	const [page, setPage] = useState(1)
 	const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
 	const lastElement = useRef()
+	const [loading, setLoading] = useState(false)
+	const [users, setUsers] = useState([])
+	useEffect(() => {
+		const loadUsers = async () => {
+			setLoading(true)
+			const response = await axios.get(
+				'https://jsonplaceholder.typicode.com/users/'
+			)
+			setUsers(response.data)
+			setLoading(false)
+		}
+
+		loadUsers()
+	}, [])
 
 	const [fetchPosts, isPostsLoading, postError] = useFethcing(
 		async (limit, page) => {
@@ -69,7 +84,7 @@ function Posts() {
 
 			{postError && <h1>Произошла ошибка ${postError}</h1>}
 
-			<PostList remove={removePost} posts={sortedAndSearchedPosts} />
+			<PostList users={users} remove={removePost} posts={sortedAndSearchedPosts} />
 
 			<div ref={lastElement} style={{ height: 20 }} />
 			{isPostsLoading && (
