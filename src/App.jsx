@@ -16,6 +16,8 @@ function App() {
 		setLoading(false)
 	}, [])
 
+	console.log(isAuth)
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -25,8 +27,8 @@ function App() {
 			}}
 		>
 			<BrowserRouter>
-				<Navbar/>
-				<AppRouter/>
+				<Navbar isAuth={isAuth} />
+				<AppRouter  />
 			</BrowserRouter>
 		</AuthContext.Provider>
 	)

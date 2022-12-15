@@ -1,54 +1,132 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
+import {
+	Avatar,
+	Box,
+	Button,
+	ClickAwayListener,
+	Divider,
+	Grow,
+	IconButton,
+	ListItemIcon,
+	MenuItem,
+	MenuList,
+	Paper,
+	Popper,
+	Stack,
+	Tooltip,
+} from '@mui/material'
+import HomeIcon from '@mui/icons-material/Home'
+import SettingsIcon from '@mui/icons-material/Settings'
+import LogoutIcon from '@mui/icons-material/Logout'
+import { useContext, useState } from 'react'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { AiOutlineHome } from 'react-icons/ai'
 import { TbLogout } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/context'
 
-const Profile = () => {
+export default function MenuListComposition() {
 	const logout = () => {
 		setIsAuth(false)
 		localStorage.removeItem('auth')
 	}
 
 	const { setIsAuth } = useContext(AuthContext)
+	const [open, setOpen] = React.useState(false)
+	const anchorRef = React.useRef(null)
 
-
-	const [open, setOpen] = useState(false)
-
-	const openMenu = () => {
-		setOpen(prev => !prev)
+	const handleToggle = () => {
+		setOpen(prevOpen => !prevOpen)
 	}
 
+	const handleClose = event => {
+		if (anchorRef.current && anchorRef.current.contains(event.target)) {
+			return
+		}
+
+		setOpen(false)
+	}
+
+	function handleListKeyDown(event) {
+		if (event.key === 'Tab') {
+			event.preventDefault()
+			setOpen(false)
+		} else if (event.key === 'Escape') {
+			setOpen(false)
+		}
+	}
+
+	// return focus to the button when we transitioned from !open -> open
+	const prevOpen = React.useRef(open)
+	React.useEffect(() => {
+		if (prevOpen.current === true && open === false) {
+			anchorRef.current.focus()
+		}
+
+		prevOpen.current = open
+	}, [open])
+
 	return (
-		<div>
+		<Stack direction='row' spacing={2}>
 			<div>
-				<button onClick={openMenu} className='flex items-center px-30 py-30'>
-					<div className='w-8 h-8 bg-hero-pattern bg-cover rounded-full'></div>
-					<MdKeyboardArrowDown className='w-6 h-6 text-slate-300' />
-				</button>
+				<IconButton
+					ref={anchorRef}
+					id='composition-button'
+					aria-controls={open ? 'composition-menu' : undefined}
+					aria-expanded={open ? 'true' : undefined}
+					aria-haspopup='true'
+					onClick={handleToggle}
+				>
+					<Avatar sx={{ width: 38, height: 38 }} />
+				</IconButton>
+				<Popper
+					open={open}
+					anchorEl={anchorRef.current}
+					role={undefined}
+					placement='bottom-start'
+					transition
+					disablePortal
+				>
+					{({ TransitionProps, placement }) => (
+						<Grow
+							className='mr-3'
+							{...TransitionProps}
+							style={{
+								transformOrigin:
+									placement === 'bottom-start' ? 'right bottom' : 'right top',
+							}}
+						>
+							<Paper PaperProps>
+								<ClickAwayListener onClickAway={handleClose}>
+									<MenuList
+										autoFocusItem={open}
+										id='composition-menu'
+										aria-labelledby='composition-button'
+										onKeyDown={handleListKeyDown}
+									>
+										<MenuItem
+											className='items-center flex'
+											onClick={handleClose}
+										>
+											<HomeIcon className='-translate-y-px' />
+											<h3 className='ml-2'>Profile</h3>
+										</MenuItem>
+										<MenuItem onClick={handleClose}>
+											<SettingsIcon />
+											<h3 className='ml-2'>Setting</h3>
+										</MenuItem>
+										<Divider />
+										<MenuItem onClick={logout}>
+											<LogoutIcon />
+											<h3 className='ml-2'>Exit</h3>
+										</MenuItem>
+									</MenuList>
+								</ClickAwayListener>
+							</Paper>
+						</Grow>
+					)}
+				</Popper>
 			</div>
-			<div
-				className={`z-10 absolute top-14  right-11 px-4 py-3 bg-zinc-700 text-center flex-col ${
-					open ? 'block' : 'hidden'
-				}  rounded-b-xl	`}
-			>
-				<ul className='justify-center'>
-					<li className='mt-5'>
-						<Link to='/profile'>
-							<AiOutlineHome className='w-6 h-6 text-white' />
-						</Link>
-					</li>
-					<hr className='mt-5' />
-					<li className='mt-5'>
-						<button onClick={logout}>
-							<TbLogout className='w-6 h-6 text-white' />
-						</button>
-					</li>
-				</ul>
-			</div>
-		</div>
+		</Stack>
 	)
 }
-
-export default Profile
