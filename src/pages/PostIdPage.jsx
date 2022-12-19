@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import PostService from '../API/PostService'
 import Loader from '../components/UI/loader/Loader'
 import { useFethcing } from '../hooks/useFetching'
+import classes from '../styles/App.css'
 
 const PostIdPage = props => {
 	const params = useParams()
@@ -27,14 +28,14 @@ const PostIdPage = props => {
 			{isLoading ? (
 				<Loader />
 			) : (
-				<div className='mt-16 '>
-					<div className='flex items-center border-b-2 pb-5 border-zinc-600'>
+				<div className='mt-16 bg-gradient-to-r from-zinc-700 to-zinc-800 px-10 py-10 rounded-2xl '>
+					<div className='flex items-center  pb-5 '>
 						<Avatar sx={{ width: 56, height: 56 }} />
 						<p className='text-zinc-400 ml-3 text-2xl'>User {post.id}</p>
 					</div>
-					<p className='text-zinc-600 mt-3'>September 14, 2016</p>
-					<CardMedia className='mt-5 h-60 bg-gradient-to-r rounded-md from-indigo-500 via-purple-500 to-pink-500' />
-					<div className='mt-5 border-t-2 border-b-2 py-10 border-zinc-600'>
+					<p className='text-zinc-500 mt-3 mb-3'>September 14, 2016</p>
+					<div className='cardMedia'></div>
+					<div className='mt-5   py-10 '>
 						<h1 className='text-white text-3xl'>{post.title}</h1>
 						<p className='text-zinc-400 mt-10 '>{post.body}</p>
 					</div>
@@ -50,9 +51,9 @@ const PostIdPage = props => {
 					{comments.map(comm => (
 						<div
 							key={comm.id}
-							className='mt-10 px-5 py-5 bg-zinc-700 rounded-xl'
+							className='mt-10 px-5 py-5 bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-2xl'
 						>
-							<div className='flex items-center border-b-2 pb-6 border-zinc-600'>
+							<div className='flex items-center  pb-6 '>
 								<Avatar />
 								<h5 className='ml-3 text-zinc-400'>{comm.email}</h5>
 							</div>

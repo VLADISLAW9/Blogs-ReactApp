@@ -23,7 +23,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 import { AiOutlineHome } from 'react-icons/ai'
 import { TbLogout } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../../context/context'
+import { AuthContext } from '../../../context/context'
 
 export default function MenuListComposition() {
 	const logout = () => {

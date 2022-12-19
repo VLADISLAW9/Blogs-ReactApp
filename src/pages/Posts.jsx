@@ -11,10 +11,11 @@ import Loader from '../components/UI/loader/Loader'
 import { useObserver } from '../hooks/useObserver'
 import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
-import {AuthContext} from '../context/context' 
+import { AuthContext } from '../context/context'
+import classes from '../styles/App.css'
 
 function Posts() {
-	const {setNotifications, notifications} = useContext(AuthContext)
+	const { setNotifications, notifications } = useContext(AuthContext)
 	const [posts, setPosts] = useState([])
 	const [filter, setFilter] = useState({ sort: '', query: '' })
 	const [modal, setModal] = useState(false)
@@ -38,8 +39,6 @@ function Posts() {
 		loadUsers()
 	}, [])
 
-
-
 	const [fetchPosts, isPostsLoading, postError] = useFethcing(
 		async (limit, page) => {
 			const response = await PostService.getAll(limit, page)
@@ -48,7 +47,6 @@ function Posts() {
 			setTotalPages(getPageCount(totalCount, limit))
 		}
 	)
-
 
 	useObserver(lastElement, page < totalPages, isPostsLoading, () => {
 		setPage(page + 1)
@@ -59,7 +57,7 @@ function Posts() {
 	}, [page])
 
 	const createPost = newPost => {
-		setPosts([...posts, newPost])
+		setPosts([newPost,...posts])
 		setModal(false)
 	}
 
@@ -68,26 +66,25 @@ function Posts() {
 		setPosts(posts.filter(p => p.id !== post.id))
 	}
 
+	const [open, setOpen] = React.useState(false)
+
+	const handleClickOpen = () => {
+		setOpen(true)
+	}
 	return (
 		<div className='App'>
-			<MyModal visible={modal} setVisible={setModal}>
-				<PostForm
-					setNotifications={setNotifications}
-					notifications={notifications}
-					create={createPost}
-				/>
-			</MyModal>
-
-			<button
-				className='fixed bottom-12  right-12 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
-				transition-all ease-in-out shadow-lg shadow-indigo-500/50 hover:from-purple-500 hover:to-purple-500'
-				onClick={() => setModal(true)}
-			>
+			<button className='addBtn' onClick={handleClickOpen}>
 				<AiOutlinePlus className='w-10 h-10 text-white items-center' />
 			</button>
-
+			<MyModal
+				createPost={createPost}
+				notifications = {notifications}
+				setNotifications = {setNotifications}
+				open={open}
+				handleClickOpen={handleClickOpen}
+				setOpen={setOpen}
+			/>
 			<PostFilter filter={filter} setFilter={setFilter} />
-
 			{postError && <h1>Произошла ошибка: ${postError}</h1>}
 
 			<PostList

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ImBlogger2 } from 'react-icons/im'
-import Profile from '../Profile'
+import Profile from '../profile/Profile'
 import Notification from '../notification/Notification'
 import { AuthContext } from '../../../context/context'
 
@@ -11,7 +11,7 @@ const Navbar = ({isAuth}) => {
 
 	return (
 		<div
-			className={`z-10 flex justify-between items-center rounded-b-xl bg-zinc-700  w-full px-10 py-3 ${
+			className={`z-10 flex justify-between items-center rounded-b-xl bg-gradient-to-r from-zinc-800 to-zinc-700  w-full px-10 py-3 ${
 				isAuth ? 'block' : 'hidden'
 			}`}
 		>

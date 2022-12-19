@@ -18,7 +18,7 @@
 body{
   overflow-y: visible;
   font-family:Arial, Helvetica, sans-serif ;
-  background-color:rgb(39 39 42);
+  background-color:rgb(39, 39, 41);
 }
 
 * {
@@ -82,5 +82,57 @@ body{
   border: 2px solid orange;
   font-weight: bold;
 }
+
+.addBtn{
+  position: fixed;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  bottom: 5rem;
+  right: 5rem;
+  border-radius: 9999999px;
+  background: linear-gradient(90deg,  #696bec,#6366f1, #a855f7, #ec4899);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	transform: translate3d(0, 0, 0);
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.cardMedia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15rem;
+  border-radius: 16px;
+	background: linear-gradient(-90deg,#696bec,#6366f1, #a855f7, #ec4899);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	transform: translate3d(0, 0, 0);
+}
+ 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 
 
