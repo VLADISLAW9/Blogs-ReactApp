@@ -13,7 +13,7 @@ const AppRouter = ({ setNavVisibled }) => {
 	}
 	return isAuth ? (
 		<Switch>
-			{privateRoutes.map(route => (
+			{privateRoutes.map((route) => (
 				<Route
 					component={route.component}
 					path={route.path}

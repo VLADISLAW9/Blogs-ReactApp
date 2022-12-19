@@ -1,18 +1,106 @@
-import React from 'react'
-import { Badge, IconButton } from '@mui/material'
-import MailIcon from '@mui/icons-material/Mail'
+import * as React from 'react'
+import Button from '@mui/material/Button'
+import ClickAwayListener from '@mui/material/ClickAwayListener'
+import Grow from '@mui/material/Grow'
+import Paper from '@mui/material/Paper'
+import Popper from '@mui/material/Popper'
+import MenuItem from '@mui/material/MenuItem'
+import MenuList from '@mui/material/MenuList'
+import Stack from '@mui/material/Stack'
+import { Divider, IconButton } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications'
+import { Badge } from '@mui/material'
+import LikeNotification from './LikeNotification'
+import AddNotification from './AddNotification'
+import { AuthContext } from '../../../context/context'
 
-const Notification = () => {
+export default function MenuListComposition() {
+	const {notifications, setNotifications} = React.useContext(AuthContext)
+	const {countNotifications,setCountNotifications} = React.useContext(AuthContext)
+	const [open, setOpen] = React.useState(false)
+	const anchorRef = React.useRef(null)
+
+	const handleToggle = () => {
+		setOpen(prevOpen => !prevOpen)
+		setCountNotifications(0)
+	}
+
+	const handleClose = event => {
+		if (anchorRef.current && anchorRef.current.contains(event.target)) {
+			return
+		}
+		setOpen(false)
+		setNotifications([])
+	}
+
+	function handleListKeyDown(event) {
+		if (event.key === 'Tab') {
+			event.preventDefault()
+			setOpen(false)
+		} else if (event.key === 'Escape') {
+			setOpen(false)
+		}
+	}
+
+	// return focus to the button when we transitioned from !open -> open
+	const prevOpen = React.useRef(open)
+	React.useEffect(() => {
+		if (prevOpen.current === true && open === false) {
+			anchorRef.current.focus()
+		}
+
+		prevOpen.current = open
+	}, [open])
+
 	return (
-		<div>
-			<IconButton>
-				<Badge badgeContent={1} color='secondary'>
-					<NotificationsIcon sx={{ fontSize: 26 }} className='text-zinc-400' />
-				</Badge>
-			</IconButton>
-		</div>
+		<Stack direction='row' spacing={5}>
+			<div>
+				<IconButton
+					aria-label='more'
+					ref={anchorRef}
+					id='composition-button'
+					aria-controls={open ? 'composition-menu' : undefined}
+					aria-expanded={open ? 'true' : undefined}
+					aria-haspopup='true'
+					onClick={handleToggle}
+				>
+					<Badge badgeContent={countNotifications} color='secondary'>
+						<NotificationsIcon className='text-zinc-400' />
+					</Badge>
+				</IconButton>
+				<Popper
+					open={open}
+					anchorEl={anchorRef.current}
+					role={undefined}
+					placement='bottom-start'
+					transition
+					disablePortal
+				>
+					{({ TransitionProps, placement }) => (
+						<Grow
+							{...TransitionProps}
+							style={{
+								transformOrigin:
+									placement === 'bottom-start' ? 'right top' : 'right top',
+							}}
+						>
+							<Paper className='px-3 py-2 bg-zinc-700 '>
+								<ClickAwayListener onClickAway={handleClose}>
+									<MenuList
+										autoFocusItem={open}
+										id='composition-menu'
+										aria-labelledby='composition-button'
+										onKeyDown={handleListKeyDown}
+									>
+										{notifications}
+									</MenuList>
+								</ClickAwayListener>
+							</Paper>
+						</Grow>
+					)}
+				</Popper>
+			</div>
+		</Stack>
 	)
 }
 
-export default Notification

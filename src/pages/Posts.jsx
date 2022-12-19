@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import PostFilter from '../components/PostFilter'
 import PostService from '../API/PostService'
 import { usePosts } from '../hooks/usePosts'
@@ -11,9 +11,10 @@ import Loader from '../components/UI/loader/Loader'
 import { useObserver } from '../hooks/useObserver'
 import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
-
+import {AuthContext} from '../context/context' 
 
 function Posts() {
+	const {setNotifications, notifications} = useContext(AuthContext)
 	const [posts, setPosts] = useState([])
 	const [filter, setFilter] = useState({ sort: '', query: '' })
 	const [modal, setModal] = useState(false)
@@ -37,6 +38,8 @@ function Posts() {
 		loadUsers()
 	}, [])
 
+
+
 	const [fetchPosts, isPostsLoading, postError] = useFethcing(
 		async (limit, page) => {
 			const response = await PostService.getAll(limit, page)
@@ -46,7 +49,6 @@ function Posts() {
 		}
 	)
 
-	console.log(totalPages)
 
 	useObserver(lastElement, page < totalPages, isPostsLoading, () => {
 		setPage(page + 1)
@@ -69,7 +71,11 @@ function Posts() {
 	return (
 		<div className='App'>
 			<MyModal visible={modal} setVisible={setModal}>
-				<PostForm create={createPost} />
+				<PostForm
+					setNotifications={setNotifications}
+					notifications={notifications}
+					create={createPost}
+				/>
 			</MyModal>
 
 			<button
@@ -82,14 +88,18 @@ function Posts() {
 
 			<PostFilter filter={filter} setFilter={setFilter} />
 
-			{postError && <h1>Произошла ошибка ${postError}</h1>}
+			{postError && <h1>Произошла ошибка: ${postError}</h1>}
 
-			<PostList users={users} remove={removePost} posts={sortedAndSearchedPosts} />
+			<PostList
+				users={users}
+				remove={removePost}
+				posts={sortedAndSearchedPosts}
+			/>
 
 			<div ref={lastElement} style={{ height: 20 }} />
 			{isPostsLoading && (
 				<div className='mt-10 mb-10'>
-					<Loader/>
+					<Loader />
 				</div>
 			)}
 

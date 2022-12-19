@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MyButton from "./UI/button/MyButton";
 import MyInput from "./UI/input/MyInput";
+import AddNotification from "./UI/notification/AddNotification";
+import { AuthContext } from "../context/context";
 
-const PostForm = ({ create }) => {
-  const [post, setPost] = useState({ title: "", body: ""});
+const PostForm = ({ create, setNotifications, notifications }) => {
+	const [post, setPost] = useState({ title: '', body: '' })
+	const {setCountNotifications, countNotifications} = useContext(AuthContext)
+	const addNewPost = e => {
+		e.preventDefault()
+		const newPost = {
+			...post,
+			id: Date.now(),
+		}
+		setCountNotifications(countNotifications + 1)
+		setNotifications([...notifications, <AddNotification/>])
+		create(newPost)
+		setPost({ title: '', body: '' })
+	}
 
-
-  const addNewPost = (e) => {
-    e.preventDefault();
-    const newPost = {
-      ...post,
-      id: Date.now(),
-    };
-    create(newPost);
-    setPost({ title: "", body: "" });
-  };
-
-  return (
+	return (
 		<form className='flex-col px-10 py-10 rounded-2xl bg-zinc-800'>
 			<h1 className='text-center text-2xl text-white '>Create your post</h1>
 			<hr className='mt-7' />
@@ -36,12 +39,12 @@ const PostForm = ({ create }) => {
 					placeholder='Description'
 				/>
 			</div>
-			<hr className='mt-7'/>
+			<hr className='mt-7' />
 			<div className='mt-7   text-center'>
 				<MyButton onClick={addNewPost}>Create post</MyButton>
 			</div>
 		</form>
 	)
-};
+}
 
 export default PostForm;

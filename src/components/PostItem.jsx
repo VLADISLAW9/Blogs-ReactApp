@@ -7,7 +7,7 @@ const PostItem = props => {
 	return (
 		<div className=' px-7 py-7 border-2 border-zinc-500 rounded-xl mt-10'>
 			<div className='flex items-center'>
-				<Avatar/>
+				<Avatar />
 				<p className='text-zinc-400 ml-3'>User {props.post.id}</p>
 			</div>
 			<p className='text-zinc-600 mt-3'>September 14, 2016</p>
@@ -23,7 +23,7 @@ const PostItem = props => {
 
 			<div className='mt-3 flex items-center '>
 				<div>
-					<Like />
+					<Like/>
 				</div>
 				<div className='ml-7'>
 					<Comments post={props.post} />
