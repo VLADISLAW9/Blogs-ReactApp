@@ -111,6 +111,7 @@ body{
 }
 
 .cardMedia {
+  margin-top: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
