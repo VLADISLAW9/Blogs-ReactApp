@@ -15,6 +15,7 @@ import { AuthContext } from '../context/context'
 import classes from '../styles/App.css'
 
 function Posts() {
+	const { users } = useContext(AuthContext)
 	const { setNotifications, notifications } = useContext(AuthContext)
 	const [posts, setPosts] = useState([])
 	const [filter, setFilter] = useState({ sort: '', query: '' })
@@ -25,19 +26,6 @@ function Posts() {
 	const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
 	const lastElement = useRef()
 	const [loading, setLoading] = useState(false)
-	const [users, setUsers] = useState([])
-	useEffect(() => {
-		const loadUsers = async () => {
-			setLoading(true)
-			const response = await axios.get(
-				'https://jsonplaceholder.typicode.com/users/'
-			)
-			setUsers(response.data)
-			setLoading(false)
-		}
-
-		loadUsers()
-	}, [])
 
 	const [fetchPosts, isPostsLoading, postError] = useFethcing(
 		async (limit, page) => {
@@ -57,7 +45,7 @@ function Posts() {
 	}, [page])
 
 	const createPost = newPost => {
-		setPosts([newPost,...posts])
+		setPosts([newPost, ...posts])
 		setModal(false)
 	}
 
@@ -78,8 +66,8 @@ function Posts() {
 			</button>
 			<MyModal
 				createPost={createPost}
-				notifications = {notifications}
-				setNotifications = {setNotifications}
+				notifications={notifications}
+				setNotifications={setNotifications}
 				open={open}
 				handleClickOpen={handleClickOpen}
 				setOpen={setOpen}

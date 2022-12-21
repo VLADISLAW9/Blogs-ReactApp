@@ -1,8 +1,11 @@
-import React, {nodeRef} from "react";
+import React, {nodeRef, useContext} from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import PostItem from "./PostItem";
 
-const PostList = ({ posts, remove}) => {
+
+const PostList = ({ posts, remove, users}) => {
+
+
 	if (!posts.length) {
 		return (
 			<h1 className='mt-10 text-center text-white text-2xl'>
@@ -10,6 +13,7 @@ const PostList = ({ posts, remove}) => {
 			</h1>
 		)
 	}
+
 
 	return (
 		<div>
