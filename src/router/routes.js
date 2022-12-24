@@ -4,6 +4,7 @@ import Posts from "../pages/Posts";
 import Login from "../pages/Login";
 import MyProfile from "../pages/MyProfile";
 import ProfileId from "../pages/ProfileId";
+import Home from "../pages/Home";
 
 export const privateRoutes = [
 	{ path: '/about', component: About, exact: true },
@@ -11,6 +12,7 @@ export const privateRoutes = [
 	{ path: '/posts/:id', component: PostIdPage, exact: true },
 	{ path: '/myprofile', component: MyProfile, exact: true },
 	{ path: '/profile/:id', component: ProfileId, exact: true },
+	{ path: '/home', component: Home, exact: true },
 ]
 
 export const publicRoutes = [

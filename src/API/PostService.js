@@ -27,4 +27,18 @@ export default class PostService {
 		)
 		return response
 	}
+
+	static async getUserById(id) {
+		const response = await axios.get(
+			`https://jsonplaceholder.typicode.com/users/${id}`
+		)
+		return response
+	}
+
+	static async getAllUser() {
+		const response = await axios.get(
+			`https://jsonplaceholder.typicode.com/users/`
+		)
+		return response
+	}
 }

@@ -1,10 +1,12 @@
 import { Avatar, CardMedia } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import PostService from '../API/PostService'
 import Loader from '../components/UI/loader/Loader'
 import { useFethcing } from '../hooks/useFetching'
 import classes from '../styles/App.css'
+
 
 const PostIdPage = props => {
 	const params = useParams()
@@ -22,6 +24,7 @@ const PostIdPage = props => {
 		fetchPostById(params.id)
 		fetchComments(params.id)
 	}, [])
+	const router = useHistory()
 
 	return (
 		<div className='px-44'>
@@ -30,7 +33,11 @@ const PostIdPage = props => {
 			) : (
 				<div className='mt-16 bg-gradient-to-r from-zinc-700 to-zinc-800 px-10 py-10 rounded-2xl '>
 					<div className='flex items-center  pb-5 '>
-						<Avatar sx={{ width: 56, height: 56 }} />
+						<Avatar
+							className='cursor-pointer'
+							onClick={() => router.push(`/profile/${post.userId}`)}
+							sx={{ width: 56, height: 56 }}
+						/>
 						<p className='text-zinc-400 ml-3 text-2xl'>User {post.id}</p>
 					</div>
 					<p className='text-zinc-500 mt-3 mb-3'>September 14, 2016</p>

@@ -7,6 +7,7 @@ import { AuthContext } from '../../../context/context'
 
 const Navbar = ({isAuth}) => {
 	
+	
 	const {notifications, setNotifications} = useContext(AuthContext)
 
 	return (

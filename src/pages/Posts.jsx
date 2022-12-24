@@ -13,9 +13,12 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import axios from 'axios'
 import { AuthContext } from '../context/context'
 import classes from '../styles/App.css'
+import {
+	useHistory,
+	useParams,
+} from 'react-router-dom/cjs/react-router-dom.min'
 
 function Posts() {
-	const { users } = useContext(AuthContext)
 	const { setNotifications, notifications } = useContext(AuthContext)
 	const [posts, setPosts] = useState([])
 	const [filter, setFilter] = useState({ sort: '', query: '' })
@@ -75,11 +78,7 @@ function Posts() {
 			<PostFilter filter={filter} setFilter={setFilter} />
 			{postError && <h1>Произошла ошибка: ${postError}</h1>}
 
-			<PostList
-				users={users}
-				remove={removePost}
-				posts={sortedAndSearchedPosts}
-			/>
+			<PostList remove={removePost} posts={sortedAndSearchedPosts} />
 
 			<div ref={lastElement} style={{ height: 20 }} />
 			{isPostsLoading && (

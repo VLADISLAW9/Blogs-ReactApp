@@ -24,13 +24,14 @@ import { AiOutlineHome } from 'react-icons/ai'
 import { TbLogout } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../context/context'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 export default function MenuListComposition() {
 	const logout = () => {
 		setIsAuth(false)
 		localStorage.removeItem('auth')
 	}
-
+	const router = useHistory()
 	const { setIsAuth } = useContext(AuthContext)
 	const [open, setOpen] = React.useState(false)
 	const anchorRef = React.useRef(null)
@@ -43,7 +44,11 @@ export default function MenuListComposition() {
 		if (anchorRef.current && anchorRef.current.contains(event.target)) {
 			return
 		}
+		setOpen(false)
+	}
 
+	const onHome = () => {
+		router.push(`/home`)
 		setOpen(false)
 	}
 
@@ -106,14 +111,10 @@ export default function MenuListComposition() {
 									>
 										<MenuItem
 											className='items-center flex'
-											onClick={handleClose}
+											onClick={onHome}
 										>
 											<HomeIcon className='-translate-y-px' />
-											<h3 className='ml-2'>Profile</h3>
-										</MenuItem>
-										<MenuItem onClick={handleClose}>
-											<SettingsIcon />
-											<h3 className='ml-2'>Setting</h3>
+											<h3 className='ml-2'>Home</h3>
 										</MenuItem>
 										<Divider />
 										<MenuItem onClick={logout}>
