@@ -23,7 +23,7 @@ const ProfileId = props => {
 	}, [])
 
 	return (
-		<div className='px-20 py-20 bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-2xl mt-16 '>
+		<div className='px-20 py-20 bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-2xl mt-9 mb-9  '>
 			{isLoading ? (
 				<Loader />
 			) : (

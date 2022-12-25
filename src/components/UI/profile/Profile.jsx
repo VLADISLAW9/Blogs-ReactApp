@@ -32,7 +32,7 @@ export default function MenuListComposition() {
 		localStorage.removeItem('auth')
 	}
 	const router = useHistory()
-	const { setIsAuth } = useContext(AuthContext)
+	const { setIsAuth, preview } = useContext(AuthContext)
 	const [open, setOpen] = React.useState(false)
 	const anchorRef = React.useRef(null)
 
@@ -82,7 +82,7 @@ export default function MenuListComposition() {
 					aria-haspopup='true'
 					onClick={handleToggle}
 				>
-					<Avatar sx={{ width: 38, height: 38 }} />
+					<Avatar src={preview} sx={{ width: 38, height: 38 }} />
 				</IconButton>
 				<Popper
 					open={open}
@@ -109,10 +109,7 @@ export default function MenuListComposition() {
 										aria-labelledby='composition-button'
 										onKeyDown={handleListKeyDown}
 									>
-										<MenuItem
-											className='items-center flex'
-											onClick={onHome}
-										>
+										<MenuItem className='items-center flex' onClick={onHome}>
 											<HomeIcon className='-translate-y-px' />
 											<h3 className='ml-2'>Home</h3>
 										</MenuItem>

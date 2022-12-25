@@ -12,7 +12,7 @@ const Login = () => {
 	}
 
 	return (
-		<div className='flex-col my-44 justify-center items-center bg-zinc-700 px-10 py-10 rounded-xl'>
+		<div className='flex-col my-44 justify-center items-center bg-gradi px-10 py-10 rounded-xl'>
 			<h1 className='text-white text-center text-2xl'>Sign In</h1>
 			<form className='flex-col mt-10' onSubmit={login}>
 				<div className='mt-5'>
