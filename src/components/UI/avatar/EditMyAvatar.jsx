@@ -12,10 +12,11 @@ const EditMyAvatar = () => {
 			return
 		}
 
-		const objectUrl = URL.createObjectURL(selectedFile)
+		const objectUrl = window.URL.createObjectURL(selectedFile)
+
 		setPreview(objectUrl)
 
-		return () => URL.revokeObjectURL(objectUrl)
+		return () => window.URL.revokeObjectURL(objectUrl)
 	}, [selectedFile])
 
 	const onSelectFile = e => {
@@ -38,7 +39,7 @@ const EditMyAvatar = () => {
 				variant='contained'
 				component='label'
 			>
-				Upload File
+				Upload Image
 				<input hidden type='file' onChange={onSelectFile} />
 			</Button>
 		</div>

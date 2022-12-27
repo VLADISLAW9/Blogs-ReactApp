@@ -25,7 +25,6 @@ const Home = () => {
 		<div className='px-20 py-20 bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-2xl mt-16'>
 			<div className='flex items-center'>
 				<div className='flex items-center'>
-					<Avatar src={preview} sx={{ width: 102, height: 102 }} />
 					<h1 className='text-zinc-400 text-3xl ml-5'>{userInfo.username}</h1>
 				</div>
 				<div className='ml-24 py-5 border-l-2 border-zinc-400 pl-7'>

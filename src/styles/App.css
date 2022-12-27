@@ -135,6 +135,10 @@ body{
 	}
 }
 
+.postImage{
+  max-height: 16rem;
+}
+
 
 
 

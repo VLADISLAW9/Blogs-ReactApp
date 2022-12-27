@@ -18,18 +18,21 @@ function App() {
 	const [isAuth, setIsAuth] = useState(false)
 	const [isLoading, setLoading] = useState(true)
 	const [selectedImage, setSelectedImage] = useState()
-	const [userInfo, setUserInfo] = useState(
-		{
-			name: 'Vlad',
-			surname: 'Duplinskij',
-			username: 'Admin',
-			age: 18,
-			email: 'duplinskij_v_d@mail.ru',
-			tel: "+7-952-154-57-07"	,
-		}
-	)
+	const [selectedPostFile, setSelectedPostFile] = useState()
 	const [selectedFile, setSelectedFile] = useState()
 	const [preview, setPreview] = useState()
+	const [postPreview, setPostPreview] = useState([])
+	const [userInfo, setUserInfo] = useState({
+		name: 'Vlad',
+		surname: 'Duplinskij',
+		username: 'Admin',
+		status: 'user',
+		age: 18,
+		email: 'duplinskij_v_d@mail.ru',
+		tel: '+7-952-154-57-07',
+	})
+
+	console.log(postPreview)
 
 	useEffect(() => {
 		if (localStorage.getItem('auth')) {
@@ -56,6 +59,10 @@ function App() {
 				setSelectedFile,
 				preview,
 				setPreview,
+				selectedPostFile,
+				setSelectedPostFile,
+				postPreview,
+				setPostPreview,
 			}}
 		>
 			<BrowserRouter>

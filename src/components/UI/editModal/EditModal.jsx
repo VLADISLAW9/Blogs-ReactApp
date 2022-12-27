@@ -19,7 +19,6 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 const FullScreenDialog = ({ open, handleClose}) => {
 	const { userInfo, setUserInfo } = useContext(AuthContext)
-	const [selectedImage, setSelectedImage] = useState()
 	const onChangeName = e => {
 		setUserInfo({ ...userInfo, name: e.target.value })
 	}
@@ -34,6 +33,9 @@ const FullScreenDialog = ({ open, handleClose}) => {
 	}
 	const onChangeTel = e => {
 		setUserInfo({ ...userInfo, tel: e.target.value })
+	}
+	const onChangeUsername = e => {
+		setUserInfo({...userInfo, username: e.target.value})
 	}
 
 	return (
@@ -63,9 +65,21 @@ const FullScreenDialog = ({ open, handleClose}) => {
 					</h1>
 
 					<div className='mt-14'>
-						<div className='flex justify-center'>
+						<div className='flex justify-center '>
 							<EditMyAvatar />
+							<div className='ml-5 mt-5'>
+								<TextField
+									onChange={onChangeUsername}
+									value={userInfo.username}
+									type='text'
+									id='standard-basic'
+									label='Username'
+									variant='standard'
+									
+								/>
+							</div>
 						</div>
+
 						<div className='flex justify-between mt-20 px-48'>
 							<TextField
 								onChange={onChangeName}
