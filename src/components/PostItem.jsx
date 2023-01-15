@@ -16,7 +16,7 @@ import CommentIcon from '@mui/icons-material/Comment'
 const PostItem = props => {
 	const router = useHistory()
 
-	const { preview, postPreview } = useContext(AuthContext)
+	const { preview, postPreview, userInfo } = useContext(AuthContext)
 
 	console.log(preview)
 
@@ -25,25 +25,42 @@ const PostItem = props => {
 			{props.post.status === 'myPost' ? (
 				<div className='px-7 py-7 flex-col bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-2xl mt-10'>
 					<div className='flex items-center max-w-xs'>
-						<p
+						<Avatar
+							className='cursor-pointer'
+							src={userInfo.avatar}
 							onClick={() => router.push(`/home`)}
-							className='ml-3 text-lg text-zinc-400 cursor-pointer'
-						>
+						/>
+						<p className='ml-3 text-lg text-zinc-400 cursor-pointer'>
 							{props.post.username}
 						</p>
 					</div>
-					<div className='cardMedia'>
-						<ImageNotSupportedIcon
-							sx={{ fontSize: 100 }}
-							className='text-white'
-						/>
-					</div>
+					{props.post.image.length > 0 && (
+						<div>
+							<CardMedia
+								className='cardMedia__image'
+								sx={{ maxHeight: 240 }}
+								image={props.post.image}
+								title='green iguana'
+							/>
+						</div>
+					)}
+					{props.post.image.length === 0 && (
+						<div className='cardMedia'>
+							<ImageNotSupportedIcon
+								sx={{ fontSize: 100 }}
+								className='text-white'
+							/>
+						</div>
+					)}
+
 					<div className='mt-10'>
 						<div className=''>
-							<h1 className='text-white text-2xl'>{props.post.title}</h1>
+							<h1 className='postTitle text-white text-2xl'>
+								{props.post.title}
+							</h1>
 						</div>
 						<div className='mt-3'>
-							<p className='text-zinc-400'>{props.post.body}</p>
+							<p className=' text-zinc-400'>{props.post.body}</p>
 						</div>
 					</div>
 
@@ -81,7 +98,9 @@ const PostItem = props => {
 					</div>
 					<div className='mt-10'>
 						<div className=''>
-							<h1 className='text-white text-2xl'>{props.post.title}</h1>
+							<h1 className='postTitle text-white text-2xl'>
+								{props.post.title}
+							</h1>
 						</div>
 						<div className='mt-3'>
 							<p className='text-zinc-400'>{props.post.body}</p>

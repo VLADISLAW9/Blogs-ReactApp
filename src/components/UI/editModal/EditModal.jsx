@@ -80,7 +80,7 @@ const FullScreenDialog = ({ open, handleClose}) => {
 							</div>
 						</div>
 
-						<div className='flex justify-between mt-20 px-48'>
+						<div className='editItems flex justify-between mt-20 px-48'>
 							<TextField
 								onChange={onChangeName}
 								value={userInfo.name}

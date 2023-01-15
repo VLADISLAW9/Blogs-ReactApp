@@ -10,13 +10,7 @@ import PostList from '../components/PostList'
 import Loader from '../components/UI/loader/Loader'
 import { useObserver } from '../hooks/useObserver'
 import { AiOutlinePlus } from 'react-icons/ai'
-import axios from 'axios'
 import { AuthContext } from '../context/context'
-import classes from '../styles/App.css'
-import {
-	useHistory,
-	useParams,
-} from 'react-router-dom/cjs/react-router-dom.min'
 
 function Posts() {
 	const { setNotifications, notifications } = useContext(AuthContext)

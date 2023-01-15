@@ -6,7 +6,7 @@ const PostFilter = ({filter, setFilter}) => {
   return (
 		<div className='flex justify-center'>
 			<MyInput
-				className='bg-zinc-800 bg-gradient-to-r from-zinc-800  to-zinc-700 pl-12 py-3 w-96 text-white rounded-l-2xl'
+				className='postFilter bg-zinc-800 bg-gradient-to-r from-zinc-800  to-zinc-700 pl-12 py-3 w-2/4 text-white rounded-l-2xl'
 				value={filter.query}
 				onChange={e => setFilter({ ...filter, query: e.target.value })}
 				placeholder='Search...'

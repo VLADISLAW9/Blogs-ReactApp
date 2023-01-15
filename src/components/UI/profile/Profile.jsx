@@ -32,7 +32,7 @@ export default function MenuListComposition() {
 		localStorage.removeItem('auth')
 	}
 	const router = useHistory()
-	const { setIsAuth, preview } = useContext(AuthContext)
+	const { setIsAuth, userInfo } = useContext(AuthContext)
 	const [open, setOpen] = React.useState(false)
 	const anchorRef = React.useRef(null)
 
@@ -61,7 +61,6 @@ export default function MenuListComposition() {
 		}
 	}
 
-	// return focus to the button when we transitioned from !open -> open
 	const prevOpen = React.useRef(open)
 	React.useEffect(() => {
 		if (prevOpen.current === true && open === false) {
@@ -82,7 +81,7 @@ export default function MenuListComposition() {
 					aria-haspopup='true'
 					onClick={handleToggle}
 				>
-					<Avatar src={preview} sx={{ width: 38, height: 38 }} />
+					<Avatar src={userInfo.avatar} sx={{ width: 38, height: 38 }} />
 				</IconButton>
 				<Popper
 					open={open}

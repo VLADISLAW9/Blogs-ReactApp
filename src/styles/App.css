@@ -3,96 +3,98 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-    width: 10px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: rgb(99, 99, 99);
+	background-color: rgb(99, 99, 99);
 }
 
 ::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 8px;
 }
 
-body{
-  overflow-y: visible;
-  font-family:Arial, Helvetica, sans-serif ;
-  background-color:rgb(39, 39, 41);
+
+body {
+	overflow-y: visible;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: rgb(39, 39, 41);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .App {
-  margin-top: 50px;
-  padding-left:300px ;
-  padding-right:300px ;
+	margin-top: 50px;
+	padding-left: 300px;
+	padding-right: 300px;
 }
 
 .post {
-  display: flex;
-  padding: 15px;
-  margin-top: 15px;
-  border: 2px solid teal;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	padding: 15px;
+	margin-top: 15px;
+	border: 2px solid teal;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.post__btns{
-  display: flex;
+.post__btns {
+	display: flex;
 }
 
 .post-enter {
- transform: translateX(-350px);
+	transform: translateX(-350px);
 }
 .post-enter-active {
-  transform: translateX(0px);
-  transition: all 500ms ease-in;
+	transform: translateX(0px);
+	transition: all 500ms ease-in;
 }
 .post-exit {
-  opacity: 1;
+	opacity: 1;
 }
 .post-exit-active {
-  transform: translateX(-350px);
-  transition: all 500ms ease-in;
+	transform: translateX(-350px);
+	transition: all 500ms ease-in;
 }
 
-.page__wrapper{
-  margin-top: 30px;
-  display: flex;
+.page__wrapper {
+	margin-top: 30px;
+	display: flex;
 }
 
-.page{
-  padding: 10px;
-  border: 1px solid teal;
-  cursor: pointer;
+.page {
+	padding: 10px;
+	border: 1px solid teal;
+	cursor: pointer;
 }
 
-.page__current{
-  border: 2px solid orange;
-  font-weight: bold;
+.page__current {
+	border: 2px solid orange;
+	font-weight: bold;
 }
 
-.addBtn{
-  position: fixed;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  bottom: 5rem;
-  right: 5rem;
-  border-radius: 9999999px;
-  background: linear-gradient(90deg,  #696bec,#6366f1, #a855f7, #ec4899);
+.addBtn {
+	position: fixed;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	display: flex;
+	bottom: 5rem;
+	right: 5rem;
+	border-radius: 9999999px;
+	background: linear-gradient(90deg, #696bec, #6366f1, #a855f7, #ec4899);
 	background-size: 400% 400%;
 	animation: gradient 10s ease infinite;
 	transform: translate3d(0, 0, 0);
@@ -109,20 +111,28 @@ body{
 		background-position: 0% 50%;
 	}
 }
+
+
 
 .cardMedia {
-  margin-top: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 15rem;
-  border-radius: 16px;
-	background: linear-gradient(-90deg,#696bec,#6366f1, #a855f7, #ec4899);
+	margin-top: 1.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 15rem;
+	border-radius: 16px;
+	background: linear-gradient(-90deg, #696bec, #6366f1, #a855f7, #ec4899);
 	background-size: 400% 400%;
 	animation: gradient 10s ease infinite;
 	transform: translate3d(0, 0, 0);
 }
- 
+
+.cardMedia__image {
+	margin-top: 1.25rem;
+	height: 15rem;
+	border-radius: 16px;
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -135,11 +145,98 @@ body{
 	}
 }
 
-.postImage{
-  max-height: 16rem;
+.postImage {
+	max-height: 16rem;
 }
 
+@media (max-width: 1350px) {
+	.App {
+		margin-top: 50px;
+		padding-left: 40px;
+		padding-right: 40px;
+	}
 
+  .addBtn{
+    right: 1rem;
+    bottom: 2rem;
+  }
 
+  .editItems{
+    flex-direction: column;
+    padding-left: 5rem;
+    padding-right:5rem ;
+  }
+}
 
+@media (max-width: 871px) {
+  .postBlock{
+    padding-left: 20px;
+    padding-right: 20px ;
+  }
 
+  .homeContent{
+    flex-direction: column;
+  }
+
+  .userPageBlock{
+    padding-left:20px;
+    padding-right: 20px;
+    padding-top: 40px;
+    padding-bottom:40px ;
+  }
+
+  .homeBlock{
+    padding-left: 0rem;
+    padding-right: 0rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .homeAvatar, .userAvatar{
+    width: 10px;
+    height: 10px;
+  }
+
+  .homeInfo, .userInfo{
+    margin-top: 20px;
+    border: none;
+    font-size: 12px;
+  }
+
+  .homeText, .userText{
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 608px) {
+  .navbar{
+    padding-left: 1.2rem;
+    padding-right: 0.75rem;
+  }
+
+  
+
+	.App {
+		margin-top: 20px;
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+
+  .addBtn{
+    right: 1rem;
+    bottom: 2rem;
+  }
+
+  .postFilter{
+    padding-left: 1rem;
+  }
+
+  .postSelect{
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+
+  .postTitle{
+    font-size: 20px;
+  }
+}

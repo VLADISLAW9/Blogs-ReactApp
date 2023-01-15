@@ -5,16 +5,13 @@ import Profile from '../profile/Profile'
 import Notification from '../notification/Notification'
 import { AuthContext } from '../../../context/context'
 
-const Navbar = ({isAuth}) => {
-	
-	
-	const {notifications, setNotifications} = useContext(AuthContext)
+const Navbar = ({ isAuth }) => {
+	const { notifications, setNotifications } = useContext(AuthContext)
 
 	return (
 		<div
-			className={`z-10 flex justify-between items-center rounded-b-xl bg-gradient-to-r from-zinc-800 to-zinc-700  w-full px-10 py-3 ${
-				isAuth ? 'block' : 'hidden'
-			}`}
+			className={`navbar z-10 flex justify-between items-center rounded-b-xl bg-gradient-to-r from-zinc-800 to-zinc-700  w-full px-10 py-3 
+			${isAuth ? 'block' : 'hidden'}`}
 		>
 			<div>
 				<Link to='/posts'>

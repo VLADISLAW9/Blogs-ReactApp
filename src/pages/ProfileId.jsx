@@ -23,24 +23,24 @@ const ProfileId = props => {
 	}, [])
 
 	return (
-		<div className='px-20 py-20 bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-2xl mt-9 mb-9  '>
+		<div className='userPageBlock px-20 py-20 bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-2xl mt-9 mb-9  '>
 			{isLoading ? (
 				<Loader />
 			) : (
 				<div>
 					<div className='flex items-center pb-10 border-b-2 border-zinc-400'>
-						<Avatar sx={{ width: 102, height: 102 }} />
+						<Avatar sx={{ width: 70, height: 70 }} className='userAvatar' />
 						<h1 className='text-zinc-400 text-3xl ml-10'>User {user.id}</h1>
 					</div>
-					<ul className='mt-10 border-b-2 border-zinc-400 pb-10'>
-						<li className='text-2xl mt-5 text-zinc-400'>
+					<ul className='userInfo mt-10 border-b-2 border-zinc-400 pb-10'>
+						<li className='userText text-2xl mt-5 text-zinc-400'>
 							<BadgeIcon className='-translate-y-1 mr-1' />: {user.name}
 						</li>
-						<li className=' mt-10 text-2xl text-zinc-400'>
+						<li className='userText mt-10 text-2xl text-zinc-400'>
 							<AlternateEmailIcon className='-translate-y-0.5 mr-1' />:{' '}
 							{user.email}
 						</li>
-						<li className='mt-10 text-2xl text-zinc-400 '>
+						<li className='userText mt-10 text-2xl text-zinc-400 '>
 							<PhoneInTalkIcon className='-translate-y-0.5 mr-1' />:{' '}
 							{user.phone}
 						</li>

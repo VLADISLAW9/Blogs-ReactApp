@@ -25,6 +25,7 @@ function App() {
 	const [userInfo, setUserInfo] = useState({
 		name: 'Vlad',
 		surname: 'Duplinskij',
+		avatar: '',
 		username: 'Admin',
 		status: 'user',
 		age: 18,
